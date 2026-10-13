@@ -9,29 +9,21 @@ on:
 
 jobs:
   build:
-    runs-on:      - name: Build APK
-        run: |
-          ls -la
-          find . -maxdepth 4 -type f -name gradlew
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout project
         uses: actions/checkout@v4
+
+      - name: List project files
+        run: |
+          pwd
+          ls -la
+          find . -maxdepth 5 -type f -name gradlew
+          find . -maxdepth 4 -type f -name build.gradle
 
       - name: Set up Java
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
-
-      - name: Build APK
-        run:
-        run: |
-          ls -la
-          find . -maxdepth 4 -type f -name gradlew
-
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: M-Assistant-APK
-          path: app/build/outputs/apk/debug/*.apk
