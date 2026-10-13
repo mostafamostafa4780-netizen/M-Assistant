@@ -9,7 +9,10 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on:      - name: Build APK
+        run: |
+          ls -la
+          find . -maxdepth 4 -type f -name gradlew
 
     steps:
       - name: Checkout project
@@ -22,9 +25,10 @@ jobs:
           java-version: '17'
 
       - name: Build APK
+        run:
         run: |
-          chmod +x gradlew
-          ./gradlew assembleDebug
+          ls -la
+          find . -maxdepth 4 -type f -name gradlew
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
