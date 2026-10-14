@@ -9,12 +9,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:
-      - name: - name: Set up Android SDK
-  uses: android-actions/setup-android@v3
-      - name:- name: Set up Android SDK
-  uses: android-actions/setup-android@v3
 
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
@@ -24,13 +25,13 @@ jobs:
 
       - name: Build APK
         run: |
-          chmod +x gradlew
+          chmod +x ./gradlew
           ./gradlew assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: M-APK
+          name: M-Assistant-APK
           path: app/build/outputs/apk/debug/*.apk
           if-no-files-found: error
 
