@@ -12,8 +12,9 @@ jobs:
     steps:
       - name: - name: Set up Android SDK
   uses: android-actions/setup-android@v3
-      - name: Set up JDK
-        uses: actions/setup-java@v4
+      - name:- name: Set up Android SDK
+  uses: android-actions/setup-android@v3
+
         with:
           distribution: temurin
           java-version: '17'
